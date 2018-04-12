@@ -2,14 +2,15 @@ const Post = require('../models/post.model')
 
 module.exports = {
   getAllPost: (req, res) => {
+    const {userid} = req.params
     Post
       .find()
       .populate('userid')
       .exec()
-      .then(response => {
+      .then(posts => {
         res.status(200).send({
           message: 'query all posts success',
-          data: response
+          data: posts
         })
       })
       .catch(err => {
@@ -42,7 +43,8 @@ module.exports = {
     const {userid} = req.params
 
     let post = new Post({
-      userid, image: req.imageURL
+      userid, image: req.imageURL,
+      isDislike: false, isLike: false
     })
 
     post.save((err, result) => {
@@ -94,22 +96,18 @@ module.exports = {
       .populate('userid')
       .exec()
       .then(response => {
-        const likes = response[0].likes;
-        const dislikes = response[0].dislikes;
-        let indexLike = likes.indexOf(userid);
-        let indexDislike = dislikes.indexOf(userid);
-
-        if(indexDislike !== -1) {
+        let isLike = response[0].isLike;
+        if(response[0].isDislike) {
           res.status(400).send({
             message: 'Sudah ada dislike'
           })
         } else {
-          if (indexLike !== -1) {
-            console.log('include')
+          if (isLike) {
             action = '$pull'
+            isLike = false;
           } else {
-            console.log('tidak include')
             action = '$push'
+            isLike = true;
           }
           
           Post.update({
@@ -117,6 +115,9 @@ module.exports = {
           }, {
             [action]: {
               likes: userid
+            },
+            $set: {
+              isLike: isLike
             }
           }, {
             overwrite: false
@@ -150,22 +151,20 @@ module.exports = {
       .populate('userid')
       .exec()
       .then(response => {
-        const likes = response[0].likes;
-        const dislikes = response[0].dislikes;
-        let indexLike = likes.indexOf(userid);
-        let indexDislike = dislikes.indexOf(userid);
-        
-        if(indexLike !== -1) {
+        let isDislike = response[0].isDislike;
+        if(response[0].isLike) {
           res.status(400).send({
             message: 'Sudah ada like'
           })
         } else {
-          if (indexDislike !== -1) {
+          if (isDislike) {
             console.log('include')
-            action = '$pull'
+            action = '$pull';
+            isDislike = false;
           } else {
             console.log('tidak include')
-            action = '$push'
+            action = '$push';
+            isDislike = true;
           }
           
           Post.update({
@@ -173,6 +172,9 @@ module.exports = {
           }, {
             [action]: {
               dislikes: userid
+            },
+            $set: {
+              isDislike: isDislike
             }
           }, {
             overwrite: false

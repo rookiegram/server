@@ -17,7 +17,9 @@ const postSchema = mongoose.Schema({
   dislikes: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
-  }]
+  }],
+  isLike: Boolean,
+  isDislike: Boolean
 }, {
     timestamps: true
 })
