@@ -40,10 +40,9 @@ module.exports = {
   },
   createPost: (req, res) => {
     const {userid} = req.params
-    const {image} = req.body
 
     let post = new Post({
-      userid, image
+      userid, image: req.imageURL
     })
 
     post.save((err, result) => {
