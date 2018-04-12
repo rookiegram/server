@@ -1,14 +1,16 @@
-var express = require('express');
+const express = require('express');
 const multer = require('multer')
 
+const {getAllUser, getOneUser, updateUser, deleteUser} = require('../controllers/user.controller.js')
 const uploadMidleware = require('../middleware/upload')
 
-var router = express.Router();
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router
+    .get('/', getAllUser)
+    .get('/:id', getOneUser)
+    .put('/:id', updateUser)
+    .delete('/:id', deleteUser)
 
 const uploaderMem = multer({
   storage: multer.memoryStorage(),
