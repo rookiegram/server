@@ -49,6 +49,7 @@ module.exports = {
     let email = req.body.email
     let password = req.body.password
     let nickname = req.body.nickname
+    
     bcrypt.hash(password, 10, function(err, hash) { 
         if(err) {
             res.status(500).json({
