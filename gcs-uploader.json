@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wikanyaa-backend",
+  "private_key_id": "79052f49ff822ea0067629c091a019184cf61ea4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCuAG3RR4ImrS45\nXFCLCTXhvA+Dsxp1jOjaAdP3V/ZdRW4/BgdU5VVtsGfccdxNBQbVBFoX2aD795mC\n+vNSz0zZde1hzQIXeRdO3Pvg9mhVqiaS8Fec4vsB+4+P8JpDCVD0z1FlFO7VnT3+\nVWl90Y8GuYec2MNn8w65fxD32r5jZ73p7crkbpGJ8OxwREUhIk3VPQxfLrJLlGkb\nl/mgpAoH+3eTzmdavJe/fZ1j47B95+WKJlH/EEjvI23dIX5zJbhAM4ode2DoEyf8\nPJlcYDK3DxO1qJOS8vlPxxEmyU1T614WpSU62J2K8VzwPOsUSV8C/2AX+yXfNvco\nWtZ6qe/7AgMBAAECggEAQqsyaJHcCeKoB91ZlPQp+3xZe24n8KtVWpaBt08yO6mL\nJMW0EHCwa09AdEQCE1aeOAcrV+EQYAqN/JQXn/6CpP2cvzDUINdKOXLNZXQ0JMKF\ndh51i0yivS88Yfvft1i99pbqym6bViih5K2oNkeRZBO5JL0fHdiQpz1K7JSZBy/K\nB9DmhoyVfaaI2pcM1ZN16gPVE6/bAVDWrP2zQWdIoc6rjgRmlLEhsMe8/ja8k1QU\nfPSvTDPdHl2GGAM47sX3SAdAGHwQQrfnChOshJlAyJ5flcfNIPqCoz+m9358TDCA\nXWhyhCqaAZx0rFR031nwcs8Bf3LOG5YMCqmSkjbVmQKBgQDhxvto1T4mkYDMUDge\n+ncmVIxpXEW6G/2ebHlLKOFahJduCNW66ail312BZ9sXlh2/3lyZy9FkJZT5jh0M\nFBUVCM8TI71sn4zXwI/eSW5ES+KHoEkfPvXnxr65WNc7UGqiblHEhANFJLvqgS+V\nk6hhf9GQXoW/QIVHdoS7ybqgOQKBgQDFSy6M0pBWJmbP91mpc0u60yy6hpqVb5wX\n2zwPkYXPrrS7S3eySZ3BkAT5AuHag6iRIBXANFCDKyArxsJAZ++EzMIWtRup4gNM\n/HlgvS1nmiKpP+hFer+PrgG1f+N2kIgQCW80pTm7rOafN52kKya9XlHSaUmg2XIp\nDEjgYiTp0wKBgQC27m5NZlnRDht5b5XJI87ec6rAw06LmJpJfkJYr2rH2J6JPQdP\nRnqqyuwMKYXO+oZoK1aEFiw2JG0sNgU7ABqEzHpbW53jIPMQ7KikxoJdO87zbN9S\nPcUoYlOuAVmCaYm8yf3eZ8fugfDv9HQFkXngZZv6iVt8tl5GpLSvIqffoQKBgHB0\nQO09m82vB80kNLQUJqcvdQBAdt4UhslGSf6puLa+4v8arfguY8APgfYZQXjWsH8/\n5YXvi7CoJScunEwvseNk/oAI7OKxE6aPBfQxAC9cOMN1zMPFimiwCwNUCOfsy9Ew\nP3Wnc7fYfn9kKPOJMQShPUwMfU40gxCIkwVqi5XHAoGATKDCqE+u2Xz4Egb+8pQq\n4td1CUnS8UmPLzVad/BNTx6lBrBPMtzDUB5yHdp3UBg6Zb61WMjwynPxyWLPcarp\nCM38lmZTI1WhUENZrk6kgPAcrmVNU3+jQ4//OAOS4hWasP/6GwH96iAoWbZ5GmGP\n7DDd4IWLFlHjnO9NqYjFyO4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "rookiegram@wikanyaa-backend.iam.gserviceaccount.com",
+  "client_id": "106350696139618901286",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rookiegram%40wikanyaa-backend.iam.gserviceaccount.com"
+}
