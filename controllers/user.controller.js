@@ -60,9 +60,11 @@ module.exports = {
                 err: err.message
             })
           } else {
+            console.log("a", result.data.likes)
             res.status(200).send({
                 message: 'edit user success'
             })
+            
           }
         })
       }
