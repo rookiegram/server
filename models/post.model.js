@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const postSchema = mongoose.Schema({
-  user: {
+  userid: {
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
@@ -11,6 +11,10 @@ const postSchema = mongoose.Schema({
     require: [true, 'Image required']
   },
   likes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }],
+  dislikes: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
   }]
