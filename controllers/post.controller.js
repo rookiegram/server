@@ -2,7 +2,8 @@ const Post = require('../models/post.model')
 
 module.exports = {
   getAllPost: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
+
     Post
       .find()
       .populate('userid')
@@ -20,7 +21,8 @@ module.exports = {
       })
   },
   getPostByUserId: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
+
     Post
       .find({
         userid
@@ -40,7 +42,7 @@ module.exports = {
       })
   },
   createPost: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
 
     let post = new Post({
       userid, image: req.imageURL,
@@ -61,8 +63,8 @@ module.exports = {
     })
   },
   updateImage: (req, res) => {
-    const {id} = req.params
-    const {image} = req.body
+    let {id} = req.params
+    let {image} = req.body
 
     Post.update({
       _id: id
@@ -86,7 +88,8 @@ module.exports = {
     })
   },
   editLike: (req, res) => {
-    const {id, userid} = req.params
+    let {id} = req.params
+    let userid = req.headers.decoded.id
     let action = '';
 
     Post
@@ -141,7 +144,8 @@ module.exports = {
       })
   },
   editDislike: (req, res) => {
-    const {id, userid} = req.params
+    let {id} = req.params
+    let userid = req.headers.decoded.id
     let action = '';
 
     Post
@@ -198,6 +202,6 @@ module.exports = {
       })
   },
   deletePost: (req, res) => {
-    const {id} = req.params
+    let {id} = req.params
   }
 }
