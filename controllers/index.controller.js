@@ -25,7 +25,8 @@ module.exports = {
                         let token = jwt.sign(
                             {
                                 id: user._id,
-                                email: user.email
+                                email: user.email,
+                                nickname: user.nickname
                             },
                             process.env.SECRET)
                         //req.headers.token = token;
