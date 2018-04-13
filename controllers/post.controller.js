@@ -1,16 +1,30 @@
 const Post = require('../models/post.model')
 
 module.exports = {
+
+  getPostById: (req, res) => {
+    Post.find({
+      _id: req.params.id
+    }).populate('userid').exec()
+    .then(post => {
+      res.status(200).send({
+        message: 'query post success',
+        data: post
+      })
+    })
+  },
+
   getAllPost: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
+
     Post
       .find()
       .populate('userid')
       .exec()
-      .then(posts => {
+      .then(post => {
         res.status(200).send({
           message: 'query all posts success',
-          data: posts
+          data: post
         })
       })
       .catch(err => {
@@ -18,9 +32,11 @@ module.exports = {
           message: err
         })
       })
-  },
+    },
+
   getPostByUserId: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
+
     Post
       .find({
         userid
@@ -40,7 +56,7 @@ module.exports = {
       })
   },
   createPost: (req, res) => {
-    const {userid} = req.params
+    let userid = req.headers.decoded.id
 
     let post = new Post({
       userid, image: req.imageURL,
@@ -61,8 +77,8 @@ module.exports = {
     })
   },
   updateImage: (req, res) => {
-    const {id} = req.params
-    const {image} = req.body
+    let {id} = req.params
+    let {image} = req.body
 
     Post.update({
       _id: id
@@ -86,7 +102,8 @@ module.exports = {
     })
   },
   editLike: (req, res) => {
-    const {id, userid} = req.params
+    let {id} = req.params
+    let userid = req.headers.decoded.id
     let action = '';
 
     Post
@@ -96,18 +113,20 @@ module.exports = {
       .populate('userid')
       .exec()
       .then(response => {
-        let isLike = response[0].isLike;
-        if(response[0].isDislike) {
+        let likes = response[0].likes;
+        let adaLike = likes.indexOf(userid);
+        let dislikes = response[0].dislikes;
+        let adaDisike = dislikes.indexOf(userid);
+        
+        if(adaDisike != -1) {
           res.status(400).send({
             message: 'Sudah ada dislike'
           })
         } else {
-          if (isLike) {
+          if (adaLike != -1) {
             action = '$pull'
-            isLike = false;
           } else {
             action = '$push'
-            isLike = true;
           }
           
           Post.update({
@@ -115,9 +134,6 @@ module.exports = {
           }, {
             [action]: {
               likes: userid
-            },
-            $set: {
-              isLike: isLike
             }
           }, {
             overwrite: false
@@ -141,7 +157,8 @@ module.exports = {
       })
   },
   editDislike: (req, res) => {
-    const {id, userid} = req.params
+    let {id} = req.params
+    let userid = req.headers.decoded.id
     let action = '';
 
     Post
@@ -151,20 +168,20 @@ module.exports = {
       .populate('userid')
       .exec()
       .then(response => {
-        let isDislike = response[0].isDislike;
-        if(response[0].isLike) {
+        let likes = response[0].likes;
+        let adaLike = likes.indexOf(userid);
+        let dislikes = response[0].dislikes;
+        let adaDisike = dislikes.indexOf(userid);
+        
+        if(adaLike != -1) {
           res.status(400).send({
             message: 'Sudah ada like'
           })
         } else {
-          if (isDislike) {
-            console.log('include')
-            action = '$pull';
-            isDislike = false;
+          if (adaDisike != -1) {
+            action = '$pull'
           } else {
-            console.log('tidak include')
-            action = '$push';
-            isDislike = true;
+            action = '$push'
           }
           
           Post.update({
@@ -172,9 +189,6 @@ module.exports = {
           }, {
             [action]: {
               dislikes: userid
-            },
-            $set: {
-              isDislike: isDislike
             }
           }, {
             overwrite: false
@@ -198,6 +212,6 @@ module.exports = {
       })
   },
   deletePost: (req, res) => {
-    const {id} = req.params
+    let {id} = req.params
   }
 }

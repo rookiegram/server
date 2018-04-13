@@ -7,6 +7,7 @@ module.exports = {
             let decoded = jwt.verify(token, process.env.SECRET);
             if(decoded) {
                 req.headers.decoded = decoded
+                console.log("..", req.headers.decoded.id)
                 next();
             } else {
                 next("Bukan user atau admin");

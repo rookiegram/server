@@ -19,7 +19,8 @@ module.exports = {
         })
   },
   getOneUser (req, res) {
-      const {id} = req.params
+      const {id} = req.headers.decoded
+      console.log(id)
       User.findById(id, (err, user) => {  
         if (!err) {
           res.status(201).send({
@@ -34,7 +35,7 @@ module.exports = {
       });
   },
   updateUser (req, res) {
-    const {id} = req.params
+    const {id} = req.headers.decoded
     const {password, nickname} = req.body
 
     bcrypt.hash(password, 10, function(err, hash) { 
@@ -60,7 +61,6 @@ module.exports = {
                 err: err.message
             })
           } else {
-            console.log("a", result.data.likes)
             res.status(200).send({
                 message: 'edit user success'
             })
@@ -71,7 +71,7 @@ module.exports = {
     });
   },
   deleteUser (req, res) {
-    const {id} = req.params
+    const {id} = req.headers.decoded
     customer.findByIdAndRemove(id, (err, todo) => {
       if(!err) {
         res.status(200).send({
