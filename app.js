@@ -13,6 +13,7 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var twitterRouter = require('./routes/twitter');
 
 var app = express();
 
@@ -37,6 +38,7 @@ db.once('open', function() {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
+app.use('/twitter', twitterRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
