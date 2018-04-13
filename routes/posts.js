@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer')
 const router = express.Router();
 const uploadMidleware = require('../middleware/upload')
-const {getAllPost, getPostByUserId, createPost, updateImage, editLike, editDislike, deletePost} = require('../controllers/post.controller.js')
+const {getAllPost, getPostByUserId, createPost, updateImage, editLike, editDislike, deletePost, getPostById} = require('../controllers/post.controller.js')
 const {auth} = require('../middleware/auth')
 
 const uploaderMem = multer({
@@ -13,6 +13,7 @@ const uploaderMem = multer({
 })
 
 router
+    .get('/id/:id', getPostById)
     .get('/all', auth, getAllPost)
     .get('/user', auth, getPostByUserId)
     .post('/', auth, uploaderMem.single('image'), uploadMidleware.upload, createPost)

@@ -1,6 +1,19 @@
 const Post = require('../models/post.model')
 
 module.exports = {
+
+  getPostById: (req, res) => {
+    Post.find({
+      _id: req.params.id
+    }).populate('userid').exec()
+    .then(post => {
+      res.status(200).send({
+        message: 'query post success',
+        data: post
+      })
+    })
+  },
+
   getAllPost: (req, res) => {
     let userid = req.headers.decoded.id
 
@@ -8,10 +21,10 @@ module.exports = {
       .find()
       .populate('userid')
       .exec()
-      .then(posts => {
+      .then(post => {
         res.status(200).send({
           message: 'query all posts success',
-          data: posts
+          data: post
         })
       })
       .catch(err => {
@@ -19,7 +32,8 @@ module.exports = {
           message: err
         })
       })
-  },
+    },
+
   getPostByUserId: (req, res) => {
     let userid = req.headers.decoded.id
 
